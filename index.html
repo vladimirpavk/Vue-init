@@ -8,20 +8,30 @@
         <div>
             <input type="text" v-model="name" placeholder="Your name?" />
             <h5>Hello, {{name}}</h5>
+            <h4>
+                Hello,{{last_name}}
+            </h4>
+            <h1 for="product in product_list">{{product.name}} </h1>
         </div>
+          
+      
     </div>
 
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js "></script>
     <script>
         /* Create a Vue instance*/
         new Vue({
             template: '#app',
-            data: function() {
-                return {
-                    name: 'Vladimir'
-                }
-            }
-        }).$mount('#app');
+            data: {             
+                    name: 'Vladimir',
+                    last_name: 'Pavković',
+                    product_list: [
+                        { id: 1, name: "Sapun" },
+                        { id: 2, name: "Silikon" }, 
+                        { id: 3, name: "Pur pena" }
+                        ]
+                }            
+        });
     </script>
 </body>
 
