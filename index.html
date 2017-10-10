@@ -10,27 +10,64 @@
             <h5>Hello, {{name}}</h5>
             <h4>
                 Hello,{{last_name}}
-            </h4>
-            <h1 for="product in product_list">{{product.name}} </h1>
+            </h4>        
+            <div>
+                <h1>
+                    <h5>{{name}}</h5>
+                </h1>
+            </div>
+            
+            <button v-on:click="changeName()">Promeni ime</button>
+            
+            {{ neka_lista }}
+            
+            <div v-for="neki_item in neka_lista">
+                <h1>{{neki_item.ime}}</h1>
+                <h5>{{neki_item.kolicina}}</h5>
+            </div>
+
+            <button @click="pKB()">Promeni kolicinu burek</button>
+
+           <!--  <novacomponent/> ne radi -->
+
         </div>
           
-      
+       
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js "></script>
     <script>
+        const NovaComponent = {
+            name: "novacomponent",
+            template: "<h1>Nova Komponenta</h1>"           
+        }
+
         /* Create a Vue instance*/
-        new Vue({
-            template: '#app',
-            data: {             
+        new Vue({          
+            el: '#app', 
+            data() {   
+                return{          
                     name: 'Vladimir',
-                    last_name: 'Pavković',
-                    product_list: [
-                        { id: 1, name: "Sapun" },
-                        { id: 2, name: "Silikon" }, 
-                        { id: 3, name: "Pur pena" }
-                        ]
-                }            
+                    last_name: 'Pavković', 
+                    neki_item: '',   
+                    neka_lista: [
+                        { ime: "Slanina", kolicina: 5 },
+                        { ime: "Palacinka", kolicina: 3},
+                        { ime: "Burek", kolicina: 10}
+                    ]               
+                }          
+            },
+            methods: {
+                changeName(){
+                    this.name="Natasa";
+                },
+                pKB(){
+                    this.neka_lista[2].kolicina = 50;
+                }
+            },
+            components: {
+                NovaComponent
+            }
         });
     </script>
 </body>
