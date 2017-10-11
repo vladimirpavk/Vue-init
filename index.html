@@ -28,8 +28,16 @@
 
             <button @click="pKB()">Promeni kolicinu burek</button>
 
-           <!--  <novacomponent/> ne radi -->
+            <div v-bind:style="{ backgroundColor: boja_pozadine }">Neki tekst koji se ne vidi</div>
+            
+            <button v-on:click="promeniPozadinu()">Promeni pozadinu</button>
 
+            <div v-bind:style="mojStil">Neki tekst koji se ne vidi</div>
+            
+            <button v-on:click="promeniPozadinu2()">Promeni pozadinu</button>
+            <!-- <NovaComponent> -->
+
+                
         </div>
           
        
@@ -54,7 +62,11 @@
                         { ime: "Slanina", kolicina: 5 },
                         { ime: "Palacinka", kolicina: 3},
                         { ime: "Burek", kolicina: 10}
-                    ]               
+                    ],
+                    boja_pozadine: 'black',
+                    mojStil: {
+                        backgroundColor: 'black'                        
+                    }           
                 }          
             },
             methods: {
@@ -63,6 +75,13 @@
                 },
                 pKB(){
                     this.neka_lista[2].kolicina = 50;
+                },
+                promeniPozadinu(){
+                    this.boja_pozadine='white';
+                },
+                promeniPozadinu2(){
+                    this.mojStil.backgroundColor='white',
+                    this.mojStil.color='red'
                 }
             },
             components: {
