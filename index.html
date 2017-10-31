@@ -28,16 +28,24 @@
 
             <button @click="pKB()">Promeni kolicinu burek</button>
 
-            <div v-bind:style="{ backgroundColor: boja_pozadine }">Neki tekst koji se ne vidi</div>
+            <!-- <div v-bind:style="{ backgroundColor: boja_pozadine }">Neki tekst koji se ne vidi</div>
             
             <button v-on:click="promeniPozadinu()">Promeni pozadinu</button>
 
             <div v-bind:style="mojStil">Neki tekst koji se ne vidi</div>
             
-            <button v-on:click="promeniPozadinu2()">Promeni pozadinu</button>
+            <button v-on:click="promeniPozadinu2()">Promeni pozadinu</button>-->
+
             <!-- <NovaComponent> -->
 
-                
+            <p v-html="mojGitProfil"></p>
+
+            <template v-for="item_lista in neka_lista">
+                <div v-for="(val,key) in item_lista">
+                    {{ key }} - {{ val }}
+                </div>
+            </template>
+
         </div>
           
        
@@ -53,7 +61,7 @@
         /* Create a Vue instance*/
         new Vue({          
             el: '#app', 
-            data() {   
+            /*data() {   
                 return{          
                     name: 'Vladimir',
                     last_name: 'Pavković', 
@@ -68,8 +76,23 @@
                         backgroundColor: 'black'                        
                     }           
                 }          
+            },*/
+            data: {
+                name: 'Vladimir',
+                    last_name: 'Pavković', 
+                    neki_item: '',   
+                    neka_lista: [
+                        { ime: "Slanina", kolicina: 5 },
+                        { ime: "Palacinka", kolicina: 3},
+                        { ime: "Burek", kolicina: 10}
+                    ],
+                    boja_pozadine: 'black',
+                    mojStil: {
+                        backgroundColor: 'black'                        
+                    },
+                    mojGitProfil: '<a href="https:/github.com/vladimirpavk">Moj Git Profil</a>'
             },
-            methods: {
+            methods: {               
                 changeName(){
                     this.name="Natasa";
                 },
@@ -86,6 +109,9 @@
             },
             components: {
                 NovaComponent
+            },
+            created(){
+                console.log("Konstruktor...");
             }
         });
     </script>
