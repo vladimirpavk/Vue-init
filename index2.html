@@ -1,0 +1,86 @@
+<!-- //examples from scotch.io, learning Vue -->
+
+<html>
+    
+    <body>
+    
+        <div id="app1">
+            <h3>Hi I am {{ title }}</h3>
+            <nova-komponent></nova-komponent>
+            <div>
+                <input type="text" ref="inputElement"/>
+                <button v-on:click="readRef()">Read references</button>
+                <h1 ref="h1Element">
+                    <h2>Ima nesto novo</h2>
+                </h1>
+            </div>
+        </div>
+
+        <div id="app2">
+            <h3>Hi I am {{ title }}</h3>
+            <nova-komponent></nova-komponent>
+        </div>
+    
+        <script src="https://unpkg.com/vue/dist/vue.js "></script>
+        <script>
+            
+            Vue.component('nova-komponent', {
+                template: "<h5>I am a re-usable component number: {{number}} . <button v-on:click='changeNumber()'>Change number</button></h5>",
+                data(){
+                    return{
+                        number: 1
+                    }
+                },
+                methods:{
+                    changeNumber(){
+                        this.number=2;
+                    }
+                },
+                created(){
+                    console.log("Created component");
+                }
+            });
+
+            new Vue({          
+                el: '#app1', 
+                /*data() {                    
+                    return {
+                         title: "Vue App One"                    
+                    }
+                }*/
+                data:{
+                    title:"Vue App One"
+                },
+                methods: {        
+                    readRef(){
+                        console.log(this.$refs.inputElement.value);
+                        console.log(this.$refs.h1Element);
+                    }       
+                },
+                created(){
+                    console.log("Konstruktor app1...");
+                }
+            });
+
+            new Vue({          
+                el: '#app2', 
+                /*data() {                    
+                    return {
+                         title: "Vue App Two"                    
+                    }
+                }*/
+                data: {
+                    title: "Vue App Two"
+                }
+                ,
+                methods: {               
+                },
+                created(){
+                    console.log("Konstruktor app2...");
+                }
+            });
+
+        </script>
+    </body>
+    
+    </html>
